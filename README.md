@@ -1,10 +1,47 @@
-# elevator-scheduler-
-scheduler algorithm 
+# Elevator Scheduler Operating System
 
-My scheduler algorithm uses 2 ways to select elevators and assign them to people.
-First it checks if a person is in the service range of the any elevator.
-Second, it uses the first way of selecting an elevator suitable for a person. I choose this one at first because I wanted to use short distance to reach the person asking and after I realized it was too simple to use so I decided to implement a score based on criteria (like closest, waiting time after request, and current number in, and also direction of the elevator) and then the elevator with a best score will be given to the person. So it is an hybrid algorithm, it focus itself on choosing the best elevator based on distance, wait time since the elevator was requested,  number of person currently in the elevator, and direction suitable .
-Then, I had some problems since some person could not be assigned to an elevator, so I created another selector function simpler like an alternative for people not selected in the first one, which is only based on short distance so the elevator with the minimum distance to reach the person start floor will be used. Also, it does not check elevator capacity . I put this when I did not have to check direction in my first scheduler but I am not sure if there is still people getting select by this alghorithm.
-Then it returns the person id with the elevator matched, and it continues to assign till there is nobody left.
+## Project Overview
+This project is an **Elevator Scheduler Operating System** designed to efficiently manage the movement of elevators in a building using advanced scheduling algorithms. The scheduler interacts with the simulation environment using asynchronous API calls and handles real-time requests from passengers to optimize elevator operations. The project is built in C++ with multithreading to ensure high performance and concurrency.
 
-Problems encountered: when going to highrise bldg and when it is busy , there  are still people with no elevator match to them . I will probably plan on adding a 3rd alternate or maybe optimizing the other one.
+## Features
+- **Efficient Elevator Scheduling**: Implements a scheduling system that manages elevator requests, optimizing for factors like elevator load, proximity, and historical wait times.
+- **Multithreading**: Uses multithreading to manage concurrent requests and ensure smooth operation across multiple elevators.
+- **API Integration**: Communicates with the simulation environment and operating system via asynchronous API calls to manage real-time elevator operations.
+- **Configurable Setup**: Reads building configuration and people movement data from input files for flexibility in testing different scenarios.
+- **External Libraries**: Uses `pthread` for multithreading and `libcurl` for network communication.
+
+## Requirements
+- **g++ Compiler**: Ensure you have `g++` installed for compiling C++ programs.
+- **Libraries**: The project requires `pthread` for multithreading and `libcurl` for network communication.
+- **C++11**: The project uses the C++11 standard, so ensure your compiler supports this version.
+
+## Installation and Setup
+1. Clone the repository:
+   ```bash
+2. Navigate to the project directory:
+3. Compile the project:
+ .make
+ .This will create an executable named scheduler_os in the project directory.
+4.To clean up the compiled files:
+ make clean
+
+## Usage
+
+1. **Prepare the input files**:
+   - **Building Configuration File**: Define the building’s elevator configuration, such as the number of elevators, capacity, and floor range.
+   - **People Configuration File**: Specify the movement of people between floors and the time tick for each action.
+
+2. **Run the scheduler**:
+   ```bash
+   ./scheduler_os
+
+
+## Example Input Format
+- Building Configuration File:
+
+- HotelBayA 1 8 4 10
+- This example defines an elevator bay named HotelBayA with a floor range from 1 to 8, currently on floor 4, and a capacity of 10.
+
+- People Configuration File:
+- Eric_R 1 2 0
+- This defines a person named Eric_R moving from floor 1 to floor 2 at time tick 0.
